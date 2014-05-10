@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine On
+ 
+RewriteRule ^([0-9]+)$ /demos/view.php?demo=$1 [L,QSA]
