@@ -14,10 +14,8 @@ class DemoHeader {
 	
 	function __construct( $filename ) {
 		$file = fopen( $filename, "rb" );
-		$data = trim(fread( $file, 8 ));
-		echo "{ $data }";
-		if( $data != "HL2DEMO" ) return;
-		echo "{ $data }";
+		$data = trim(fread( $file, 8 )); 
+		if( $data != "HL2DEMO" ) return; 
 		$data = unpack( "idp/inp", fread( $file, 8 ) ); 
 		$this->demo_protocol = $data['dp'];
 		$this->network_protocol = $data['np'];
