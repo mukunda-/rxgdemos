@@ -68,7 +68,7 @@ function GetServerInfo() {
 		// register new server
 		$game = $sql->real_escape_string( $game );
 		$sql->safequery( "INSERT INTO SERVERS (NAME,GAME) VALUES ('$param', '$game')" );
-		$sql->safequery( "SELECT LAST_INSERT_ID()" );
+		$result = $sql->safequery( "SELECT LAST_INSERT_ID()" );
 		$row = $result->fetch_assoc();
 		$server_id = $row['LAST_INSERT_ID()'];
 
