@@ -59,20 +59,20 @@ function GetServerInfo() {
 	
 	$game = "idk";
 	if( isset( $_GET['game'] ) ) {
-		$game = substr($_GET['game'],4);
-		$game = $sql->real_escape_string( $game );
+		$game = substr($_GET['game'],0,4);
 	}
 	
 	global $server_id, $server_game;
 	$server_game = $game;
 	if( !$row ) {
 		// register new server
+		$game = $sql->real_escape_string( $game );
 		$sql->safequery( "INSERT INTO SERVERS (NAME,GAME) VALUES ('$param', '$game')" );
 		$sql->safequery( "SELECT LAST_INSERT_ID()" );
 		$row = $result->fetch_assoc();
 		$server_id = $row['LAST_INSERT_ID()'];
-		$server_game = $game;
-		return false;
+
+		return true;
 	} else {
 		$server_id = $row['ID'];
 		 
