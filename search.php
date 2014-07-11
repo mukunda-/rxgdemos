@@ -212,10 +212,11 @@ $recentlyviewed="";
 if( isset($_SESSION['viewed'][$row['ID']]) && $_SESSION['viewed'][$row['ID']] > 0 ) {
 	$recentlyviewed = " recentlyviewed";
 }
+
 $content .= '
 	<tr class="demoentry'.$recentlyviewed.'" onclick="ViewDemo(this,'.$row['ID'].')"> 
 		<td class="mapimage" title="'.$row['MAP'].'" style="background: url(\''.$mapimage.'\') no-repeat center center; width:64px">&nbsp;</td>
-		<td>'.$servers[$row['SERVER']]['name'].'</td>
+		<td>'.GetServername( $row['SERVER'] ).'</td>
 		<td>'.$row['MAP'].'</td>
 		<td>'.DemoListTime($row['TIME']).'</td>
 		<td class="centered">'.FormatDuration($row['DURATION'],true).'</td>

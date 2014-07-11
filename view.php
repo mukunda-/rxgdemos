@@ -33,7 +33,7 @@ function Content() {
 	//Tue Feb 5 00:45:10 2009
 	echo '<p><table class="demoinfo">';
 		echo '<tr><td>Match ID:</td><td>' . $id . '</td></tr>';
-		echo '<tr><td>Server:</td><td>' . $servers[$row['SERVER']]['name'] . '</td></tr>';
+		echo '<tr><td>Server:</td><td>' . GetServerName( $row['SERVER'] ) . '</td></tr>';
 		echo '<tr><td>Game:</td><td>' . $row['GAME'] . '</td></tr>';
 		echo '<tr><td>Score:</td><td>' . $row['SCORE1'] . ' - ' . $row['SCORE2'] . '</td></tr>';
 		echo '<tr><td>Start Time:</td><td>' . strftime( "%a %b %#d %Y, %#I:%M %p", $row['TIME'] ) . '</td></tr>';
