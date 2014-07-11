@@ -136,8 +136,10 @@ function GetServerList() {
 	} 
 }
 
-function GetServerName( index ) {
-	$servername = isset($servers[index]) ? $servers[index]['name'] : "UNKNOWN";
+function GetServerName( $index ) {
+	global $servers;
+	return isset($servers[$index]) ? $servers[$index]['name'] : "UNKNOWN";
+	
 }
 
 //---------------------------------------------------------------------------------------------
