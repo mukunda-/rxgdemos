@@ -55,13 +55,29 @@ function GetServerInfo() {
 	$param = $sql->real_escape_string( strtoupper($GLOBALS['param_server']) );
 
 	$result = $sql->safequery( "SELECT ID,GAME FROM SERVERS WHERE NAME='$param'" );
-	$row = $result->fetch_array();
-	if( !$row ) return false;
-
+	$row = $result->fetch_assoc();
+	
+	$game = "idk";
+	if( isset( $_GET['game'] ) ) {
+		$game = substr($_GET['game'],4);
+		$game = $sql->real_escape_string( $game );
+	}
+	
 	global $server_id, $server_game;
-	$server_id = $row['ID'];
-	$server_game = $row['GAME'];
-	return true;
+	$server_game = $game;
+	if( !$row ) {
+		// register new server
+		$sql->safequery( "INSERT INTO SERVERS (NAME,GAME) VALUES ('$param', '$game')" );
+		$sql->safequery( "SELECT LAST_INSERT_ID()" );
+		$row = $result->fetch_assoc();
+		$server_id = $row['LAST_INSERT_ID()'];
+		$server_game = $game;
+		return false;
+	} else {
+		$server_id = $row['ID'];
+		 
+		return true;
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
