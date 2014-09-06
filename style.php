@@ -21,7 +21,7 @@ $table_text = "#333";
 //------------------------------------------------
 echo " 
 body {
-	background-color:#00f;
+	background-color:#eee;/*test*/
 	font-family: roboto, sans;
 	font-weight:300;
 	font-size:15px;
@@ -34,6 +34,7 @@ body {
 	width: 100%;
 	height:100%;
 	box-shadow:  inset 0px 0px 16px rgba(0,0,0,0.55);
+	background: url('soft_wallpaper.png') repeat fixed;
 	background: linear-gradient( rgba(255,255,255,0.0), rgba(0,0,0,0.5)),url('soft_wallpaper.png') repeat fixed; 
 	/*, linear-gradient( #999, #666) no-repeat fixed*/
 	z-index:-1;
@@ -145,6 +146,7 @@ body>center>h3 {
 
 .contentbody .viewdemo.downloadbutton {
 	
+	background: #60a34f;
 	background: linear-gradient( #60a34f, #477428 );
 	color:#eee;
 	width: 200px;
