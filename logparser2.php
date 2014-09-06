@@ -158,8 +158,7 @@ function ParseLog( $filepath, $simple=false, $starttime=0, $duration=0, $ticks=0
 		//L DD/MM/YYYY - HH:MM:SS
 		
 		$line = substr( $line, 25 );
-			echo '<font color="red">' . htmlspecialchars($line) . '</font><br>'; // DEBUG
-	 
+		
 		if( preg_match( $regex_playeraction , $line, $matches ) ) {
 			$name = htmlspecialchars($matches[1]);
 			$steamid = $matches[2];
@@ -167,8 +166,6 @@ function ParseLog( $filepath, $simple=false, $starttime=0, $duration=0, $ticks=0
 			$action = $matches[4];
 			$data = $matches[5];
 			$self = $highlight==""?FALSE:($steamid == $highlight);
-			
-			echo '<font color="blue">' . "$steamid, $team, $action, $data, $self" . '</font><br>'; // DEBUG
 			
 			switch( $action ) {
 				case "entered":
