@@ -92,9 +92,9 @@ function ParseLog( $filepath, $simple=false, $starttime=0, $duration=0, $ticks=0
 	$file = fopen( $filepath, "r" );
 	if( !$file  ) return FALSE;
 	
-	$target_regex = '"(.+?)<.+?><(.+?)>(<.*?>)?"';
+	$target_regex = '"(.+?)<([^>]+?)><([^>]+?)>(<[A-Z]+>)?"';
 
-	$regex_playeraction = '/^'.$target_regex.' (?:\[.+?\] )?(.+?) (.*)/S';
+	$regex_playeraction = '/^'.$target_regex.' (?:\[.+?\] )?([a-z]+?) (.*)/S';
 	$regex_switched = '/^from team <(.*?)> to (<.*?>)/S';
 	$regex_killed = '/^'.$target_regex.'(?: \[.*?\])? with "(.+?)" ?(\(headshot\))?/S';
 	$regex_say = '/^"(.*?)"?\s*$/S';
@@ -156,16 +156,19 @@ function ParseLog( $filepath, $simple=false, $starttime=0, $duration=0, $ticks=0
 		if( $line[0] != 'L' ) continue;
 		$time = strtotime(substr( $line, 2, 10 ) . ' ' . substr( $line, 15, 8 ) . ' America/Chicago'); 
 		//L DD/MM/YYYY - HH:MM:SS
+		
 		$line = substr( $line, 25 );
+			echo '<font color="red">' . htmlspecialchars($line) . '</font><br>'; // DEBUG
 	 
 		if( preg_match( $regex_playeraction , $line, $matches ) ) {
-		 
 			$name = htmlspecialchars($matches[1]);
 			$steamid = $matches[2];
 			$team = $matches[3];
 			$action = $matches[4];
 			$data = $matches[5];
 			$self = $highlight==""?FALSE:($steamid == $highlight);
+			
+			echo '<font color="blue">' . "$steamid, $team, $action, $data, $self" . '</font><br>'; // DEBUG
 			
 			switch( $action ) {
 				case "entered":

@@ -23,6 +23,9 @@ if( !GetServerInfo() ) die();
 function CreateLogAccessRestriction() {
 	if( file_exists("logs/.htaccess") ) return;
 	file_put_contents( "logs/.htaccess", "deny from all" );
+	
+	if( file_exists("stage/.htaccess") ) return;
+	file_put_contents( "stage/.htaccess", "deny from all" );
 }
 
 //-------------------------------------------------------------------------------------------------
