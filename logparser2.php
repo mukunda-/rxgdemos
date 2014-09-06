@@ -92,7 +92,7 @@ function ParseLog( $filepath, $simple=false, $starttime=0, $duration=0, $ticks=0
 	$file = fopen( $filepath, "r" );
 	if( !$file  ) return FALSE;
 	
-	$target_regex = '"(.+?)<([^>]+?)><([^>]+?)>(<[A-Z]+>)?"';
+	$target_regex = '"(.+?)<[^>]+?><([^>]+?)>(<[A-Z]+>)?"';
 
 	$regex_playeraction = '/^'.$target_regex.' (?:\[.+?\] )?([a-z]+?) (.*)/S';
 	$regex_switched = '/^from team <(.*?)> to (<.*?>)/S';
@@ -168,6 +168,7 @@ function ParseLog( $filepath, $simple=false, $starttime=0, $duration=0, $ticks=0
 			$self = $highlight==""?FALSE:($steamid == $highlight);
 			
 			switch( $action ) {
+				
 				case "entered":
 					if( $simple ) break;
 					if( $data == 'the game' ) {
@@ -191,7 +192,6 @@ function ParseLog( $filepath, $simple=false, $starttime=0, $duration=0, $ticks=0
 					}
 					break;
 				case "killed":
-					
 					if( preg_match( $regex_killed, $data, $matches ) ) {
 					
 						$victimid = $matches[2];
