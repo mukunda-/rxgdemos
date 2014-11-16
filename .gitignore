@@ -1,3 +1,12 @@
+### Stuff ###
+
+/demos
+/logs
+/maps
+/stage
+config.php
+sql_login.php
+
 #################
 ## Eclipse
 #################
