@@ -1,4 +1,6 @@
+
 Options +FollowSymLinks
-RewriteEngine On
- 
-RewriteRule ^([0-9]+)$ /demos2/view.php?demo=$1 [L,QSA]
+RewriteEngine On 
+RewriteRule ^([0-9]+)$ /view.php?demo=$1 [L,QSA]
+
+			
